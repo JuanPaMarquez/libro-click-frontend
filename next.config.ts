@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+  import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+  const nextConfig: NextConfig = {
+    /* config options here */
+    output: 'export',
+    reactStrictMode: true, // Habilita el modo estricto de React
+    images: {
+      unoptimized: true, // Hace que las imágenes sean compatibles con exportaciones estáticas
+    },
+  };
 
-export default nextConfig;
+  export default nextConfig;
