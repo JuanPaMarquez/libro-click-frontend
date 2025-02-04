@@ -7,6 +7,8 @@
     images: {
       unoptimized: true, // Hace que las imágenes sean compatibles con exportaciones estáticas
     },
+    basePath: "/libro-click-frontend",
+    assetPrefix: "/libro-click-frontend",
   };
 
   export default nextConfig;
