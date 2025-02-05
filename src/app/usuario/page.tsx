@@ -1,4 +1,4 @@
-
+export const runtime = 'edge'
 export default function UsuarioPage() {
   return (
     <div className="main">
