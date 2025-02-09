@@ -33,12 +33,13 @@ export const categorias = [
 
 export default function Categorias () {
   const pathname = usePathname()
+  console.log(pathname)
 
   return (
     <>
       {categorias.map((categoria) => (
         <Link href={categoria.link} key={categoria.nombre}>
-          <Button className={`${pathname === categoria.link ? `underline decoration-2 underline-offset-6`: ``} shadow-cyan-500/50`}>{categoria.nombre}</Button>
+          <Button className={`${pathname === categoria.link ? `underline decoration-2 underline-offset-6`: ``} shadow-cyan-500/50 text-black`}>{categoria.nombre}</Button>
         </Link>
       ))}
     </>
