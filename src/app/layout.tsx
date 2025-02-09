@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Navegation from "@/ui/components/Navegation";
 import "../styles/globals.css";
+
 
 export const metadata: Metadata = {
   title: "Libro-Click",
@@ -11,9 +13,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body>
+        <Navegation />
         {children}
       </body>
     </html>

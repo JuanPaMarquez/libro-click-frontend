@@ -1,15 +1,7 @@
-// import Image from "next/image";
-// import styles from "./page.module.css";
-
-import Link from "next/link";
-
 export default function Home() {
   return (
-    <div className="main">
-      <h1>Hola mundo 2</h1>
-      <Link href="/usuario">
-        <button>Ir a usuario</button>
-      </Link>
+    <div className="main flex flex-col justify-center items-center gap-6">
+      <h1 className="text-blue-600 text-6xl font-bold text-center mt-5">Hola mundo 2</h1>
     </div>
   );
 }
