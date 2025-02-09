@@ -20,7 +20,7 @@ export default function Navegation() {
           <div id="main" className="flex items-center">
             <Link href="/" className="flex items-center w-50">
               <button className="cursor-pointer">
-                <img src="/logoNav.webp" className="rounded-2xl" width={230} height={20} alt=""/>
+                <img src="/logoNav.webp" className="rounded-2xl" width="200" height="43.72" alt=""/>
               </button>
             </Link>
           </div>
