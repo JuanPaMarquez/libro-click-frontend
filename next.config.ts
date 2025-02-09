@@ -5,7 +5,7 @@
     reactStrictMode: true, // Habilita el modo estricto de React
     images: {
       unoptimized: true, // Hace que las imágenes sean compatibles con exportaciones estáticas
-    },
+    }
   };
 
   export default nextConfig;

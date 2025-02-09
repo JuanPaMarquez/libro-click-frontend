@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import Link from "next/link";
-import Image from "next/image";
 import { ButtonMain } from "@/ui/components/Buttons";
 import { TiThMenu } from "react-icons/ti";
 import { useState } from "react";
@@ -20,7 +20,7 @@ export default function Navegation() {
           <div id="main" className="flex items-center">
             <Link href="/" className="flex items-center w-50">
               <button className="cursor-pointer">
-                <Image src="/logoNav.webp" className="rounded-2xl" width={230} height={20} alt="" priority loading="eager" />
+                <img src="/logoNav.webp" className="rounded-2xl" width={230} height={20} alt=""/>
               </button>
             </Link>
           </div>
