@@ -16,11 +16,11 @@ export default function Navegation() {
   
   return (
     <>
-      <nav className="flex justify-between p-2 bg-blue-200">
+      <nav className="flex justify-between h-15 p-2 bg-blue-200">
           <div id="main" className="flex items-center">
             <Link href="/" className="flex items-center w-50">
               <button className="cursor-pointer">
-                <Image src="/logoNav.webp" className="rounded-2xl" width={230} height={20} alt="" />
+                <Image src="/logoNav.webp" className="rounded-2xl" width={230} height={20} alt="" priority loading="eager" />
               </button>
             </Link>
           </div>
