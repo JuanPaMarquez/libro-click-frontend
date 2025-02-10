@@ -1,13 +1,12 @@
 import { categorias } from "@/utils/generos";
 import { notFound } from "next/navigation";
-
 // async function getProduct(id: string) {
 //   const res = await fetch(`https://api.example.com/products/${id}`);
 //   if (!res.ok) return notFound();
 //   return res.json();
 // }
 
-export default async function GeneroPage({ params }: { params: { genero: string } }) {
+export default async function GeneroPage({ params }: { params: Promise<{ genero: string }> }) {
 
   const { genero } = await params;
   console.log("path: ", genero)
