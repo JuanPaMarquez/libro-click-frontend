@@ -1,4 +1,4 @@
-import { Button } from "@/ui/components/Buttons";
+import { Button } from "@/components/Buttons";
 import Link from "next/link";
 
 export default function UsuarioPage() {

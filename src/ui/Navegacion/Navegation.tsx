@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 import Link from "next/link";
-import { ButtonMain } from "@/ui/components/Buttons";
+import { ButtonMain } from "@/components/Buttons";
 import { TiThMenu } from "react-icons/ti";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react"
-import Categorias from "@/utils/Categorias";
+import Categorias from "@/ui/Navegacion/Categorias";
 
 export default function Navegation() {
   const [navOpen, setNavOpen] = useState(false);

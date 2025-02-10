@@ -1,36 +1,10 @@
 "use client"
 
-import { Button } from "@/ui/components/Buttons"
+import { Button } from "@/components/Buttons"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-
-export const categorias = [
-  {
-    link: "/",
-    nombre: "Inicio"
-  },
-  {
-    link: "/aventura",
-    nombre: "Aventura"
-  },
-  {
-    link: "/ciencia",
-    nombre: "Ciencia"
-  },
-  {
-    link: "/educacion",
-    nombre: "Educacion"
-  },
-  {
-    link: "/ficcion",
-    nombre: "Ficcion"
-  },
-  {
-    link: "/literatura",
-    nombre: "Literatura"
-  },
-]
+import { categorias } from "@/utils/generos"
 
 export default function Categorias () {
   const pathname = usePathname()
