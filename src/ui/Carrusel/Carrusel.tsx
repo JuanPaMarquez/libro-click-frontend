@@ -5,7 +5,7 @@ import useInterval from "./useInterval"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { AnimatePresence } from "motion/react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const MotionImage = motion.create(Image);
 

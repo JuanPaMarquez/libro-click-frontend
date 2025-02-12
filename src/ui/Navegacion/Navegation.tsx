@@ -42,7 +42,7 @@ export default function Navegation() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -30, opacity: 0 }}  
                 onClick={handleNav}
-                className="p-3 bg-blue-200 flex flex-col gap-2 absolute top-13 right-0 min-[820px]:hidden"
+                className="p-3 bg-blue-200 flex flex-col gap-2 absolute z-10 top-13 right-0 min-[820px]:hidden"
               >
                 <Categorias />
                 <Link href="/login">
