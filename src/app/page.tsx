@@ -1,7 +1,13 @@
+import Carrusel from "@/ui/Carrusel/Carrusel";
+import InfoProject from "@/ui/InfoProject";
+
 export default function Home() {
+  
+
   return (
-    <div className="main flex flex-col justify-center items-center gap-6">
-      <h1 className="text-blue-600 text-6xl font-bold text-center mt-5">Hola mundo 2</h1>
+    <div className="flex justify-center items-start gap-5 px-2 pt-3 max-[1054px]:flex-col max-[1054px]:items-center max-[1054px]:gap-1">
+      <Carrusel />
+      <InfoProject />
     </div>
   );
 }
