@@ -13,10 +13,6 @@ export default function Carrusel() {
   const [loading, setLoading] = useState(true);
   const { count, carruselImg, nextImage, prevImage } = useInterval();
 
-  useEffect(() => {
-    setLoading(true);
-  }, [count]);
-
   return (
     <div className="flex-3 relative h-auto w-auto max-w-[600px] aspect-[3/2] flex items-center justify-center">
       {loading && (
