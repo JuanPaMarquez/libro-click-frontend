@@ -11,7 +11,13 @@ const MotionImage = motion.create(Image);
 
 export default function Carrusel() {
   const [loading, setLoading] = useState(true);
-  const { count, carruselImg, nextImage, prevImage } = useInterval();
+  const { 
+    count, 
+    carruselImg, 
+    nextImage, 
+    prevImage, 
+    moveImage 
+  } = useInterval();
 
   return (
     <div className="flex-3 relative h-auto w-auto max-w-[600px] aspect-[3/2] flex items-center justify-center">
@@ -31,8 +37,18 @@ export default function Carrusel() {
           src={carruselImg[count]} width="2000" height="10" alt={`Carrusel ${count}`} />
       </AnimatePresence>
       <div className="absolute inset-0">
-        <button onClick={prevImage}><FaArrowLeft className="size-12 text-black hover:text-white hover:stroke-black stroke-white stroke-20 absolute left-0 top-[45%]" /></button>
-        <button onClick={nextImage}><FaArrowRight className="size-12 text-black hover:text-white hover:stroke-black stroke-white stroke-20 absolute right-0 top-[45%]"/></button>
+        <button onClick={prevImage}><FaArrowLeft className="size-12 max-[400px]:size-8 text-black hover:text-white hover:stroke-black stroke-white stroke-20 absolute left-0 top-[45%]" /></button>
+        <button onClick={nextImage}><FaArrowRight className="size-12 max-[400px]:size-8 text-black hover:text-white hover:stroke-black stroke-white stroke-20 absolute right-0 top-[45%]"/></button>
+      </div>
+      <div id="indicador" className="absolute bottom-4 w-full flex justify-center">
+        {
+          carruselImg.map((_, i) => (
+          <div 
+            key={i} 
+            onClick={() => moveImage(i)}
+            className={`size-4 max-[400px]:size-3 rounded-full mx-1 cursor-pointer ${i === count ? "bg-blue-300 scale-125" : "bg-[rgb(151,151,151)]"}`}>
+          </div>) ) 
+        }
       </div>
     </div>
   )

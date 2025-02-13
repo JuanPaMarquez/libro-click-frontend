@@ -29,6 +29,11 @@ export default function useInterval() {
     resetInterval()
   }
 
+  const moveImage = (index: number) => {
+    setCount(index);
+    resetInterval();
+  }
+
   useEffect(() => {
     startInterval();
     return () => {
@@ -39,5 +44,5 @@ export default function useInterval() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { count, carruselImg, nextImage, prevImage };
+  return { count, carruselImg, nextImage, prevImage, moveImage };
 }
