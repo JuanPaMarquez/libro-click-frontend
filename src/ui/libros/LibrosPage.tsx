@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -15,7 +16,7 @@ interface Libro {
   descarga: string;
 }
 
-export default function LibrosPage() {
+function LibrosPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -38,7 +39,7 @@ export default function LibrosPage() {
 
   useEffect(() => {
     async function fetchLibros() {
-      setIsLoading(true);
+      setIsLoading(true); // Establece isLoading en true antes de iniciar la solicitud
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       let url = `${apiUrl}/api/libros?page=${page}&limit=${limit}`;
       if (categoria) {
@@ -54,7 +55,7 @@ export default function LibrosPage() {
       const data = await res.json();
       setLibros(data.libros);
       setTotalPages(data.totalPages);
-      setIsLoading(false);
+      setIsLoading(false); // Establece isLoading en false después de recibir los datos
     }
     fetchLibros();
   }, [page, categoria]);
@@ -70,7 +71,7 @@ export default function LibrosPage() {
           <li key={libro.id} className="w-fit flex flex-col items-center border rounded-md">
             <img src={libro.portada} alt={libro.titulo} className="w-48 h-68 object-cover rounded-t-md" />
             <div className="flex items-center gap-2 p-1">
-              <button className="bg-green-300 w-8 border rounded-full flex justify-center cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
+              <button className="bg-green-300 w-8 border rounded-full flex justify-center cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg></button>
               <button className="border rounded-full bg-red-400 px-3 font-bold cursor-pointer">Descargar</button>
             </div>
           </li>
@@ -96,5 +97,13 @@ export default function LibrosPage() {
         </button>
       </div>
     </div>
-  )
+  );
+}
+
+export default function LibrosPage() {
+  return (
+    <Suspense fallback={<p className="flex justify-center">Cargando...</p>}>
+      <LibrosPageContent />
+    </Suspense>
+  );
 }
