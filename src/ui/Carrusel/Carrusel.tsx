@@ -5,12 +5,12 @@ import useInterval from "./useInterval"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { AnimatePresence } from "motion/react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 const MotionImage = motion.create(Image);
 
-export default function Carrusel() {
+function CarruselContent() {
   const [loading, setLoading] = useState(true);
   const { 
     count, 
@@ -59,4 +59,12 @@ export default function Carrusel() {
       </div>
     </div>
   )
+}
+
+export default function Carrusel() {
+  return (
+    <Suspense fallback={<p className="flex justify-center">Cargando...</p>}>
+      <CarruselContent />
+    </Suspense>
+  );
 }
