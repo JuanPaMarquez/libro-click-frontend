@@ -1,6 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "motion/react";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const textDiv = (
@@ -17,6 +18,14 @@ export default function InfoProject () {
   const handleInfo = () => {
     setInfoOpen(!infoOpen);
   }
+
+
+  const url = useSearchParams().get("genero");
+  
+  if (url) {
+    return null;
+  }
+
 
   return (
     <>

@@ -6,6 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { AnimatePresence } from "motion/react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const MotionImage = motion.create(Image);
 
@@ -18,6 +19,12 @@ export default function Carrusel() {
     prevImage, 
     moveImage 
   } = useInterval();
+
+  const url = useSearchParams().get("genero");
+
+  if (url) {
+    return null;
+  }
 
   return (
     <div className="flex-3 relative h-auto w-auto max-w-[600px] aspect-[3/2] flex items-center justify-center">

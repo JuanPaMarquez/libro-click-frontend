@@ -4,23 +4,23 @@ export const categorias = [
     nombre: "Inicio"
   },
   {
-    link: "/aventura",
+    link: "/?genero=Aventura",
     nombre: "Aventura"
   },
   {
-    link: "/ciencia",
+    link: "/?genero=Ciencia",
     nombre: "Ciencia"
   },
   {
-    link: "/educacion",
+    link: "/?genero=Educacion",
     nombre: "Educacion"
   },
   {
-    link: "/ficcion",
+    link: "/?genero=Ficcion",
     nombre: "Ficcion"
   },
   {
-    link: "/literatura",
+    link: "/?genero=Literatura",
     nombre: "Literatura"
   },
 ]

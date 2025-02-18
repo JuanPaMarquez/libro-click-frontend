@@ -9,7 +9,6 @@ import { notFound } from "next/navigation";
 export default async function GeneroPage({ params }: { params: Promise<{ genero: string }> }) {
 
   const { genero } = await params;
-  console.log("path: ", genero)
 
   if (categorias.every((categoria) => categoria.link !== `/${genero}`) && genero !== "login") {
     console.log("not found")
