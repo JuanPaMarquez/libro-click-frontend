@@ -11,13 +11,13 @@ import { Libro } from "@/utils/schemas"
 function LibrosPageContent() {
   const searchParams = useSearchParams();
 
-
   const [libros, setLibros] = useState<Libro[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [showBook, setShowBook] = useState(false);
   const [libro, setLibro] = useState<Libro | null>(null);
   const [serverOut, setServerOut] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [contador, setContador] = useState(40)
 
   const page = Number(searchParams.get("page")) || 1;
@@ -57,7 +57,9 @@ function LibrosPageContent() {
         setTotalPages(data.totalPages);
         setIsLoading(false); // Establece isLoading en false después de recibir los datos
       } catch (error) {
+        clearTimeout(timeout);
         console.error("Hubo un problema al obtener los datos:", error);
+        setServerError(true);
         setIsLoading(false); // Establece isLoading en false si hay un error
       }
     }
@@ -74,6 +76,10 @@ function LibrosPageContent() {
     }
     return () => clearInterval(interval);
   }, [contador, serverOut]);
+
+  if (serverError) {
+    return <p className="flex justify-center">Hubo un problema al obtener los datos</p>;
+  }
 
   if (serverOut) {
     return <p className="flex justify-center">activando servidor en {contador} segundos...</p>;
