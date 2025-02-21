@@ -2,39 +2,29 @@
 "use client"
 
 import { Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-interface Libro {
-  id: number;
-  titulo: string;
-  autor: string;
-  publicacion: number;
-  genero: string;
-  resumen: string;
-  portada: string;
-  descarga: string;
-}
+import Paginacion from "../Paginacion/Paginacion";
+import MostrarLibro from "./MostrarLibro";
+import { Libro } from "@/utils/schemas"
 
 function LibrosPageContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
+
 
   const [libros, setLibros] = useState<Libro[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [showBook, setShowBook] = useState(false);
+  const [libro, setLibro] = useState<Libro | null>(null);
 
   const page = Number(searchParams.get("page")) || 1;
   const categoria = searchParams.get("genero") || null;
-  const limit = 20;
+  const limit = 18;
 
-  const handlePageChange = (newPage: number) => {
-    const queryParams = new URLSearchParams();
-    queryParams.set("page", newPage.toString());
-    if (categoria) {
-      queryParams.set("genero", categoria);
-    }
-    router.push(`/?${queryParams.toString()}`);
+  const handleShowBook = (libro: Libro) => {
+    setShowBook(!showBook);
+    setLibro(libro)
   }
 
   useEffect(() => {
@@ -45,7 +35,7 @@ function LibrosPageContent() {
       if (categoria) {
         url += `&genero=${categoria}`;
       }
-      console.log(url)
+      // console.log(url)
       const res = await fetch(url, {
         method: "GET",
         headers: {
@@ -65,37 +55,20 @@ function LibrosPageContent() {
   }
 
   return (
-    <div className="pt-2">
-      <ul className="grid grid-cols-[repeat(auto-fill,_minmax(192px,192px))] gap-4 place-content-center">
+    <div className="pt-2 max-w-[1900px] mx-auto">
+      <ul className="grid grid-cols-[repeat(auto-fill,_minmax(300px,300px))] max-[358px]:grid-cols-[auto] gap-4 place-content-center">
         {libros.map((libro) => (
-          <li key={libro.id} className="w-fit flex flex-col items-center border rounded-md">
-            <img src={libro.portada} alt={libro.titulo} className="w-48 h-68 object-cover rounded-t-md" />
+          <li key={libro.id} className="w-full flex flex-col items-center border rounded-md">
+            <img id={`imagen-${libro.id}`} src={libro.portada} alt={libro.titulo} onClick={() => handleShowBook(libro)} className="w-78 h-88 max-[358px]:h-58 max-[358px]:w-48 object-cover rounded-t-md" />
             <div className="flex items-center gap-2 p-1">
-              <button className="bg-green-300 w-8 border rounded-full flex justify-center cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg></button>
-              <button className="border rounded-full bg-red-400 px-3 font-bold cursor-pointer">Descargar</button>
+              <button className="bg-green-300 size-auto border rounded-full flex justify-center cursor-pointer"><svg className="size-8" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
+              <button className="border rounded-full bg-red-400 px-3 text-2xl font-bold cursor-pointer">Descargar</button>
             </div>
           </li>
         ))}
       </ul>
-
-      <div className="flex justify-center items-center gap-2 my-4">
-        <button
-          onClick={() => handlePageChange(page - 1)}
-          disabled={page <= 1}
-          style={{ marginRight: "10px", opacity: page <= 1 ? 0.5 : 1 }}
-          className={page <= 1 ? "cursor-not-allowed" : "cursor-pointer"}
-        >
-          <svg className="size-10" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
-        </button>
-        <button
-          onClick={() => handlePageChange(page + 1)}
-          disabled={page >= totalPages}
-          style={{ marginLeft: "10px", opacity: page >= totalPages ? 0.5 : 1 }}
-          className={page >= totalPages ? "cursor-not-allowed" : "cursor-pointer"}
-        >
-          <svg className="size-10" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
-        </button>
-      </div>
+      { showBook && <MostrarLibro showBook={setShowBook} libro={libro}/>}
+      <Paginacion page={page} totalPages={totalPages} categoria={categoria}/>
     </div>
   );
 }
