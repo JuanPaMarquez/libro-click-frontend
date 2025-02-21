@@ -52,6 +52,7 @@ function LibrosPageContent() {
         });
         const data = await res.json();
         setServerOut(false);
+        clearTimeout(timeout);
         setLibros(data.libros);
         setTotalPages(data.totalPages);
         setIsLoading(false); // Establece isLoading en false después de recibir los datos
