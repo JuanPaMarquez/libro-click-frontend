@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navegation from "@/ui/Navegacion/Navegation";
 import "../styles/globals.css";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
         <Navegation />
         {children}
       </body>
+      <GoogleAnalytics gaId="G-3SSHLDHHES" />
     </html>
   );
 }
