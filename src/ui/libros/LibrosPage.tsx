@@ -17,6 +17,8 @@ function LibrosPageContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [showBook, setShowBook] = useState(false);
   const [libro, setLibro] = useState<Libro | null>(null);
+  const [serverOut, setServerOut] = useState(false);
+  const [contador, setContador] = useState(40)
 
   const page = Number(searchParams.get("page")) || 1;
   const categoria = searchParams.get("genero") || null;
@@ -28,6 +30,7 @@ function LibrosPageContent() {
   }
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
     async function fetchLibros() {
       setIsLoading(true); // Establece isLoading en true antes de iniciar la solicitud
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -35,22 +38,47 @@ function LibrosPageContent() {
       if (categoria) {
         url += `&genero=${categoria}`;
       }
-      // console.log(url)
-      const res = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      setLibros(data.libros);
-      setTotalPages(data.totalPages);
-      setIsLoading(false); // Establece isLoading en false después de recibir los datos
+      
+      timeout = setTimeout(() => {
+        setServerOut(true);
+      }, 10000);
+
+      try {
+        const res = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        setServerOut(false);
+        setLibros(data.libros);
+        setTotalPages(data.totalPages);
+        setIsLoading(false); // Establece isLoading en false después de recibir los datos
+      } catch (error) {
+        console.error("Hubo un problema al obtener los datos:", error);
+        setIsLoading(false); // Establece isLoading en false si hay un error
+      }
     }
     fetchLibros();
+    return () => clearTimeout(timeout);
   }, [page, categoria]);
 
-  if (isLoading) {
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (serverOut) {
+      interval = setInterval(() => {
+        setContador((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [contador, serverOut]);
+
+  if (serverOut) {
+    return <p className="flex justify-center">activando servidor en {contador} segundos...</p>;
+  }
+
+  if (isLoading && !serverOut) {
     return <p className="flex justify-center">Cargando...</p>;
   }
 
