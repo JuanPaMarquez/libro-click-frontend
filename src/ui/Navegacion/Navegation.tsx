@@ -16,7 +16,7 @@ export default function Navegation() {
   
   return (
     <>
-      <nav className="flex justify-between h-15 p-2 bg-blue-200">
+      <nav className="sticky top-0 z-10 flex justify-between h-15 p-2 bg-blue-200 shadow-lg">
           <div id="main" className="flex items-center">
             <Link href="/" className="flex items-center w-50">
               <button className="cursor-pointer">

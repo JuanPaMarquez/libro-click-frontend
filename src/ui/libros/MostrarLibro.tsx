@@ -30,7 +30,7 @@ export default function MostrarLibro({ showBook, libro }: MostrarLibroProps) {
   },[])
 
   return (
-    <div className="fixed inset-0 bg-transparent backdrop-blur-sm flex justify-center items-center">
+    <div className="fixed inset-0 z-11 bg-transparent backdrop-blur-sm flex justify-center items-center">
       <div className="bg-white p-6  max-w-[90%] max-h-[90vh] overflow-auto rounded-lg shadow-lg">
         <div id="cabezero" className="flex justify-between mb-3">
           <h1 className="text-2xl font-bold">{libro?.titulo}</h1>
