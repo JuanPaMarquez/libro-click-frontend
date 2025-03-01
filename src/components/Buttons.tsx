@@ -25,16 +25,19 @@ function ButtonMain ({ children, className }: { children: ReactNode, className?:
 
 function ButtonLogin ({ 
   children, 
+  onClick,
   type='button', 
   className='bg-blue-500 hover:bg-blue-600 text-white'
 }:{ 
   children: ReactNode, 
+  onClick?: () => void,
   type?: "button" | "submit" | "reset", 
   className?: string 
 }) {
   return (
     <button 
       type={type} 
+      onClick={onClick}
       className={`w-60 h-9 rounded-2xl cursor-pointer ${className}`}
     >
       {children}

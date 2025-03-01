@@ -42,7 +42,8 @@ function LibrosPageContent() {
       timeout = setTimeout(() => {
         setServerOut(true);
       }, 10000);
-
+      
+      console.log("render")
       try {
         const res = await fetch(url, {
           method: "GET",
@@ -71,7 +72,14 @@ function LibrosPageContent() {
     let interval: NodeJS.Timeout;
     if (serverOut) {
       interval = setInterval(() => {
-        setContador((prev) => prev - 1);
+        setContador((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            window.location.reload(); // Recarga la página cuando el contador llega a 0
+            return 0;
+          }  
+          return prev - 1
+        });
       }, 1000);
     }
     return () => clearInterval(interval);
