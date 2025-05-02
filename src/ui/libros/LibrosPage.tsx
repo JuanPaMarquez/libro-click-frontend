@@ -105,7 +105,13 @@ function LibrosPageContent() {
             <img id={`imagen-${libro.id}`} src={libro.portada} alt={libro.titulo} onClick={() => handleShowBook(libro)} className="w-78 h-88 max-[358px]:h-58 max-[358px]:w-48 object-cover rounded-t-md" />
             <div className="flex items-center gap-2 p-1">
               <button className="bg-green-300 size-auto border rounded-full flex justify-center cursor-pointer"><svg className="size-8" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
-              <button className="border rounded-full bg-red-400 px-3 text-2xl font-bold cursor-pointer">Descargar</button>
+              <a 
+                className="border rounded-full bg-red-400 px-3 text-2xl font-bold cursor-pointer"
+                href={libro.descarga}
+                target="_blank"
+              >
+                Descargar
+              </a>
             </div>
           </li>
         ))}

@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend del sitio: Libro-Click
 
-## Getting Started
+Libro-Click es una plataforma web desarrollada con el objetivo de demostrar habilidades en el desarrollo web full-stack. La aplicación está construida utilizando Next.js para el frontend y Node.js para el backend.
 
-First, run the development server:
+# Características Principales
+## Frontend:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js: Utilizado para la creación de interfaces de usuario dinámicas y optimizadas.
+- React: Biblioteca de JavaScript para construir interfaces de usuario.
+- Framer Motion: Utilizado para animaciones fluidas y atractivas.
+- Tailwind CSS: Framework de CSS para un diseño responsivo y moderno.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Backend:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js: Entorno de ejecución para JavaScript en el servidor.
+- Express: Framework para construir APIs RESTful.
+- TursoTech: Base de datos SQL para almacenar información de libros y usuarios.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Funcionalidades:
 
-## Learn More
+- Catálogo de Libros: Los usuarios pueden explorar una amplia variedad de libros categorizados por género.
+- Búsqueda y Filtros: Funcionalidades de búsqueda y filtrado para encontrar libros específicos.
+- Visualización de Detalles: Los usuarios pueden ver detalles de cada libro, incluyendo la portada, autor, resumen y opciones de descarga.
+- Autenticación de Usuarios: Registro e inicio de sesión para acceder a funcionalidades personalizadas.
+- Carrusel de Imágenes: Presentación de libros destacados en un carrusel animado.
 
-To learn more about Next.js, take a look at the following resources:
+## Despliegue:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Vercel: Utilizado para el despliegue del frontend.
+- Render: Utilizado para el despliegue del backend.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Propósito
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+El propósito principal de Libro-Click es servir como una muestra práctica de las capacidades en el desarrollo de aplicaciones web modernas, optimizadas y escalables. Este proyecto no tiene fines comerciales ni de lucro; su objetivo es demostrar el dominio en el uso de tecnologías actuales y buenas prácticas en el desarrollo web.
